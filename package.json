@@ -12,6 +12,13 @@
   },
   "author": "Jacob Wischnat <jacob@meldcx.com>",
   "license": "ISC",
+  "engines": {
+    "node": "^8"
+  },
+  "os": [
+    "win32"
+  ],
+  "engineStrict": true,
   "bugs": {
     "url": "https://github.com/MeldCX/example-node-ffi/issues"
   },
