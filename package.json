@@ -22,6 +22,7 @@
     "ref-struct": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^6.3.0"
+    "eslint": "^6.3.0",
+    "jest": "^24.9.0"
   }
 }
