@@ -1,21 +1,24 @@
-const ffi = require('ffi');
+const {GetSystemMetrics} = require('./libs/GetSystemMetrics');
+const DisplayControl = require('./libs/DisplayControl');
+const {GetLastInputInfoInMs} = require('./libs/GetLastInputInfoInMs');
 
-class User32 {
-    constructor() {
-        this.SM_CMONITORS = 80;
+const log = message => {
+    const now = (new Date()).toISOString();
+    const messageWithTimestamp = `[${now}]${message}`;
+    console.log(messageWithTimestamp);
+};
 
-        const user32Methods = ffi.Library('user32.dll', {
-            'GetSystemMetrics': ['int', ['int']]
-        });
+log(`The number of monitors is ${GetSystemMetrics()}.`);
 
-        Object.assign(this, user32Methods);
-    }
+DisplayControl.turnOff();
+log('Display is turned off.');
 
-    countMonitors() {
-        return this.GetSystemMetrics(this.SM_CMONITORS);
-    }
-}
+log('Display will be back on after 1 second.');
+setTimeout(function () {
+    DisplayControl.turnOn();
+    log('Display is turned on.');
+}, 1000);
 
-const u32 = new User32();
-
-console.log('The number of monitors is', u32.countMonitors());
+setTimeout(function () {
+    log(`It has been ${GetLastInputInfoInMs()} ms since last input.`);
+}, 2000);
