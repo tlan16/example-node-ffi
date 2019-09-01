@@ -1,0 +1,8 @@
+plugins:
+  - jest
+env:
+  'jest/globals': true
+rules:
+  no-unused-vars: off
+globals:
+  it: true
